@@ -1,20 +1,28 @@
 {
-  "name": "anjuke Spider1",
+  "name": "node-anjuke",
   "version": "1.0.0",
-  "description": "anjuke spider ",
+  "description": "",
+  "author": "",
+  "private": true,
+  "scripts": {
+    "start": "node douban.js && node server.js"
+  },
   "dependencies": {
     "async": "^1.5.0",
     "cheerio": "^0.19.0",
     "eventproxy": "^0.3.4",
     "superagent": "^3.8.2"
   },
-  "devDependencies": {},
-  "scripts": {
-    "test": "node index",
-    "start": "node douban"
+  "devDependencies": {
   },
-  "repository": {
-    "type": "git",
-    "url": ""
-  }
+  "engines": {
+    "node": ">= 6.0.0",
+    "npm": ">= 3.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
 }
+
