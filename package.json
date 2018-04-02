@@ -1,5 +1,5 @@
 {
-  "name": "anjuke Spider",
+  "name": "anjuke Spider1",
   "version": "1.0.0",
   "description": "anjuke spider ",
   "dependencies": {
@@ -11,7 +11,7 @@
   "devDependencies": {},
   "scripts": {
     "test": "node index",
-    "start": "node server.js"
+    "start": "node douban"
   },
   "repository": {
     "type": "git",
