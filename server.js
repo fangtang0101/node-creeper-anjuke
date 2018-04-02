@@ -6,66 +6,32 @@ var http = require("http"),
     eventproxy = require('eventproxy');
 
 // https://www.cnblogs.com/CraryPrimitiveMan/p/3674421.html
-
-
-
-
+// http://www.w3school.com.cn/jquery/traversing_find.asp
 function netWork() {
-
     var pageUrl = 'https://suzhou.anjuke.com/sale/wuzhong/p1/#filtersort';
-
     superagent.get(pageUrl)
         .end(function(err, pres) {
-
             if (err) {
                 console.log(err);
             }
-            // pres.text  is all html 页面
-
-            // console.log('pres ...',pres);
             var $ = cheerio.load(pres.text);
-
-            console.log('all ...',$('#houselist-mod-new .list-item'));
-
-
-
-
-            $('#houselist-mod-new .list-item').each(function(idx, element) {
+            var list_data = [];
+            $('#houselist-mod-new li').each(function(idx, element) {
                 var $element = $(element);
-                console.log('element ...',$element);
-                // items.push({
-                //     title: $element.attr('title'),
-                //     href: $element.attr('href')
-                // });
+                var obj = {};
+                obj.img_src = $(this).find('.item-img img').attr('src');
+
+                obj.title = $(this).find('.house-details .comm-address').attr('title');
+                obj.type1 = $(this).find('.house-details  .details-item').eq(0).find('span').eq(0).text(); //
+                obj.type2 = $(this).find('.house-details  .details-item').eq(0).find('span').eq(1).text(); //
+                obj.type3 = $(this).find('.house-details  .details-item').eq(0).find('span').eq(2).text(); //
+                obj.person_contact = $(this).find('.house-details  .details-item').eq(0).find('span').eq(3).text(); //
+                obj.address = $(this).find('.house-details  .details-item').eq(1).find('span').text(); //
+                // pro-price
+                obj.price = $(this).find('.pro-price  span').eq(1).text(); //
+                list_data.push(obj);
             });
-
-
-            // console.log('text ...',pres.text);
-
-            // console.log($('.list-item').children('.pro-price').text())
-
-            // console.log($('.pro-price','.list-item').text());  // source pro-price in list-item  html()
-
-            // console.log($('.item-img','.list-item').html());
-
-            // console.log($('li').html());
-
-            // console.log($('.list-item').find('.item-img').html());
-
-            // console.log($('.list-item .item-img').html());
-
-            // console.log($('.list-item'));
-
-
-
-            // var listAll = $('.list-item');
-            // console.log('len ...',$('.list-item'));
-            // for (var i = 0; i < listAll.length; i++) {
-            //     var articleUrl = listAll.eq(i);
-            //     console.log(articleUrl);
-
-            // }
-
+            console.log('list_data ...', list_data);
         });
 }
 
